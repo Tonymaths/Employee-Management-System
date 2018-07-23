@@ -43,11 +43,11 @@ class reg(db.Model):
 
 
 @app.route('/')
-def home():
+def index():
     result=Tony.query.order_by(Tony.date_posted.desc()).all()
     posts = Comments.query.filter_by(id=comment).all()
 
-    return render_template('home.html', result=result, post=posts)
+    return render_template('index.html', result=result, post=posts)
 
 
 @app.route('/contact', methods=['GET','POST'])
