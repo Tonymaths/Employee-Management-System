@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<br>
+{% for category, message in get_flashed_messages(with_categories=true)%}
+<div class="alert alert-{{category}}">{{message}}
+</div>
+{% endfor %}
+
+{% if error%}
+<div class="alert alert-danger">{{error}}
+</div>
+{% endif%}
+
+<div class="jumbotron">
+<h6><i>WELCOME, {{session.username}}</i></h6>
+     <div ><br>
+    <h5 class="blog-tittle"> ADD A COMMENT TO THIS TOPIC</h5></div>
+
+<div class="jumbotron">
+<h6><i>{{title}}</i></h6>
+     <div ><br>
+         {% for r in result %}
+    <h5 class="blog-tittle"> {{r.comment}}</h5></div>
+</div>
+    {% endfor %}
+
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-sm-8 blog-main'>
+        <form method='POST' action=''>
+
+             <div class='form-group'>
+               <label>Comment</label>
+                <textarea  class='form-control' rows='5' name='comment' placeholder="COMMENT TO THE FORUM TOPIC" id='content'></textarea>
+            </div>
+               <button type='submit' class='btn btn-success'>SUBMIT</button>
+        </form></div>
+    </div>
+</div></div>
+{% endblock %}
+

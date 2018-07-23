@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<br>
+
+{% for category, message in get_flashed_messages(with_categories=true)%}
+<div class="alert alert-success">{{message}}
+</div>
+{% endfor %}
+
+{% for category, message in get_flashed_messages(with_categories=true)%}
+<div class="alert alert-{{category}}">{{message}}
+</div>
+{% endfor %}
+
+{% if error%}
+<div class="alert alert-danger">{{error}}
+</div>{% endif%}
+
+<div class='container jumbotron text'><form action="" method ="POST">
+  <div class="form-group">
+    <label for='username'>USER NAME</label><br>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Full name">
+    <small class="form-text text-muted">We'll never share your details with anyone else.</small>
+  </div>
+    <div class="form-group">
+    <label for="email">EMAIL</label>
+    <input type="text" class="form-control" id="email" name="email" placeholder=" yourcustomname@domainname.com">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your details with anyone else.</small>
+  </div>
+
+  <div class="form-group">
+    <label for="password">PASSWORD</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="please enter a password">
+  </div>
+
+     <div class="form-group">
+    <label for="confirm"> CONFIRM PASSWORD</label>
+    <input type="password" class="form-control" id="confirm" name="confirm" placeholder=" confirm Password">
+  </div>
+
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input">
+      Check me out
+    </label>
+  </div>
+
+    <div>
+  <button type="submit" class="btn btn-success">REGISTER<span class="glyphicon glyphicon-send"></span> </button></div>
+</form></div><a class="btn btn-large btn-primary" type="submit" href="/sign" >Login &raquo;</a>
+
+
+{% endblock %}
+

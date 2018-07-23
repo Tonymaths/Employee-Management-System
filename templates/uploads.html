@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+
+{% if error%}
+<div class="alert alert-danger">{{error}}
+</div>{% endif%}
+
+{% for category, message in get_flashed_messages(with_categories=true)%}
+<div class="alert alert-success">{{message}}
+</div>
+{% endfor %}
+<br>
+
+     <div class="container jumbotron">
+      <form  method="POST" action="http://127.0.0.1:5000/upload_process" enctype='multipart/form-data'>
+          <h3>Select a File</h3>
+        <input type="file" class="input-block-level" name="file" >
+
+        <input type='submit' class='btn btn-large btn-primary'>
+      </form>
+
+    </div>
+
+
+
+
+{% endblock %}
