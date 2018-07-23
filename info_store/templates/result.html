@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <link href="{% static 'css/bootstrap.min.css' %}"  rel='stylesheet' media='screen' type="text/css">
+    <title>Employee details</title>
+</head>
+<body>
+
+<br>
+<div class='container jumbotron text'>
+    <h2>Employee's details</h2>
+<form method="post" action="">
+    <table>
+        <tr>
+            <td> Name</td>
+            <td><strong>{{ name }}</strong></td>
+        </tr>
+        <tr>
+            <td> Email</td>
+            <td><strong>{{ email }}</strong></td>
+        </tr>
+        <tr>
+            <td> Phone number</td>
+            <td><strong>{{ number }}</strong></td>
+        </tr>
+        <tr>
+            <td>Contact address</td>
+            <td><strong>{{ contact }}</strong></td>
+        </tr>
+    </table>
+</form><hr>
+    <a class="btn btn-large btn-primary" type="submit" href="" >Back to form &raquo;</a>
+</div>
+</body>
+</html>
