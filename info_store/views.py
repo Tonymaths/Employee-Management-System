@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
-from django.http import HttpResponse
-from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
+import re
 
 
 # disabling csrf (cross site request forgery)
@@ -14,21 +13,25 @@ def index(request):
         email=request.POST.get('email')
         phone_number=request.POST.get('number')
         contact=request.POST.get('contact')
-        # adding the values in a context variable
-        context = {
+        pattern=r'[^@]+@[^@]+\.[^@]+'
+        email_pattern=re.match(pattern, email)
+        if email_pattern is None:
+ # adding the values in a context variable
+            context={
+            'error':'PLEASE ENTER A VALID EMAIL ADDRESS',
+            }
+            return render(request,'index.html', context)
+        if name=='' or  email=='' or phone_number=='' or contact=='':
+            context={
+            'error' :'PLEASE ENTER ALL FIELDS'}
+            return render(request,'index.html', context)
+        else:
+
+          context = {
             'name': name,
             'email': email,
             'number': phone_number,
             'contact': contact,
-        }
-
-        # getting our showdata template
-        template = loader.get_template('result.html')
-
-        # returing the template
-        return HttpResponse(template.render(context, request))
-    else:
-        # if post request is not true
-        # returing the form template
-        template = loader.get_template('index.html')
-        return HttpResponse(template.render())
+           }
+        return render(request,'result.html', context)
+    return render(request,'index.html')
