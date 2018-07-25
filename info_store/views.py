@@ -15,23 +15,32 @@ def index(request):
         contact=request.POST.get('contact')
         pattern=r'[^@]+@[^@]+\.[^@]+'
         email_pattern=re.match(pattern, email)
-        if email_pattern is None:
- # adding the values in a context variable
-            context={
-            'error':'PLEASE ENTER A VALID EMAIL ADDRESS',
-            }
-            return render(request,'index.html', context)
+        num_pattern=re.match(r'[0-9]+', phone_number)
+
         if name=='' or  email=='' or phone_number=='' or contact=='':
             context={
             'error' :'PLEASE ENTER ALL FIELDS'}
             return render(request,'index.html', context)
+        if email_pattern is None:
+            # adding the values in a context variable
+            context={
+                'error':'PLEASE ENTER A VALID EMAIL ADDRESS',
+            }
+            return render(request,'index.html', context)
+        if num_pattern is None:
+            context={
+                'error':'PLEASE ENTER A VALID PHONE NUMBER',
+            }
+            return render(request,'index.html', context)
         else:
 
-          context = {
-            'name': name,
-            'email': email,
-            'number': phone_number,
-            'contact': contact,
-           }
+            p=Post(name=name,email=email, number=phone_number ,contact=contact)
+            p.save()
+            queryset=Post.objects.all()
+
+            context = {
+                'all_post': queryset
+
+            }
         return render(request,'result.html', context)
     return render(request,'index.html')

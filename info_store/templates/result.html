@@ -13,22 +13,26 @@
     <h2>Employee's details</h2>
 <form method="post" action="">
     <table>
+        {% for obj in all_post %}
         <tr>
+
             <td> Name</td>
-            <td><strong>{{ name }}</strong></td>
+            <td><strong>{{obj.name}}</strong></td>
         </tr>
         <tr>
             <td> Email</td>
-            <td><strong>{{ email }}</strong></td>
+            <td><strong>{{obj.email}}</strong></td>
         </tr>
         <tr>
             <td> Phone number</td>
-            <td><strong>{{ number }}</strong></td>
+            <td><strong>{{obj.number}}</strong></td>
         </tr>
         <tr>
             <td>Contact address</td>
-            <td><strong>{{ contact }}</strong></td>
+            <td><strong>{{obj.contact}}</strong></td>
+
         </tr>
+        {% endfor %}
     </table>
 </form><hr>
     <a class="btn btn-large btn-primary" type="submit" href="" >Back to form &raquo;</a>
