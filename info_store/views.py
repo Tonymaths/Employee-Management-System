@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from.models import Post
 import re
 
 
