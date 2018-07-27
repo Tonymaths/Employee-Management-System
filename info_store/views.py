@@ -35,7 +35,7 @@ def index(request):
             return render(request,'index.html', context)
         else:
 
-            p=Post(name=name,email=email, number=phone_number ,contact_address=contact)
+            p=Post(name=name,email=email, number=phone_number ,contact=contact)
             p.save()
             queryset=Post.objects.all()
 
